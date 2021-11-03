@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import { signInWithRedirect, GoogleAuthProvider, signOut } from "firebase/auth";
+import { auth } from './firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import Main from './components/Main'
+import LoginPage from './components/LoginPage'
 
 function App() {
+
+  const [user, loading, error] = useAuthState(auth);
+
+  function logout() {
+    signOut(auth)
+  }
+
+  function login() {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      console.log(user)
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+    });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {user ? <Main photo={user.photoURL} name={user.displayName} id={user.uid} logout={logout}/> : <LoginPage login={login} />}
     </div>
   );
 }

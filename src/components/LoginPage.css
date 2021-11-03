@@ -1,0 +1,23 @@
+.loginPage {
+    display: flex;
+    width: 45%;
+    height: 100vh;
+    background-color: #333333;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginPage button {
+    margin: 10px;
+    height: 60px;
+    width: 250px;
+    font-size: 20px;
+    padding: 10px 10px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .loginPage {
+      width: 100%;
+    }
+  }
