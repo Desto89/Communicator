@@ -1,0 +1,69 @@
+.body {
+    overflow: hidden;
+}
+
+.friends {
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.friend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+    background-color: gainsboro;
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.inputField input:focus {
+    outline-width: 0;
+}
+
+.friend img {
+    border-radius: 999px;
+    width: 80px;
+}
+
+.friend h3 {
+    margin-left: 10px;
+}
+
+.inputField input {
+    flex: 1;
+    border: none;
+    height: 35px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.inputField button {
+    height: 100%;
+    border: none;
+    width: 60px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+.inputField input:focus {
+    outline-width: 0;
+}
+
+
+.inputField {
+    border-radius: 0;
+    height: 5vh;
+}
+
+.inputField input {
+    height: 20px;
+}
+
+.inputField button {
+    height: 40px;
+}
+}
